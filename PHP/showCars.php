@@ -17,10 +17,11 @@ if($_SERVER["REQUEST_METHOD"]=='POST' && isset($_POST["submit"])){
         $Days = $_POST["days"];
         $date = $dob = date('Y-m-d', strtotime($_POST['date']));
         $VNumber = $_POST["VNumber"];
+        $carId = $_POST["carId"];
 
         $sql = "Insert into booking(Agency_id,Customer_id,NumberofDays,Starting_Date,VNumber) VALUES ('$Agent_id','$Cust_id','$Days','$date','$VNumber')";
         if($conn->query($sql) == TRUE){
-            $sql1 = "Update cars Set VStatus='Booked' where Agency_id='$Agent_id' && VNumber='$VNumber'";
+            $sql1 = "Update cars Set VStatus='Booked' where Agency_id='$Agent_id' && Car_id='$carId'";
             if ($conn->query($sql1) === TRUE){
                 $msg = "Booking Confirmed";
                 $color="success";
